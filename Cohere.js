@@ -1,6 +1,6 @@
 // // change name later
 // const cohere = require('cohere-ai');
-// Cohere.init('znMDclvwb5fP1W3EXCNOEze4');
+// Cohere.init('API' KEY');
 
 
 
@@ -80,7 +80,7 @@ function PromptGenerator() {
                 accept: 'application/json',
                 'Cohere-Version': '2022-12-06',
                 'content-type': 'application/json',
-                authorization: 'Bearer 38Gar8JHT8XDYH6F4TjqmIe5OdCrefiwfoPiz01T'
+                authorization: ''
             },
             data: {
                 max_tokens: 20,

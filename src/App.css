@@ -1,38 +1,161 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Sora:wght@400;500;600;700&display=swap');
+
+:root {
+  --light: #F8F3F0;
+  --dark:  #4F4640;
+  --beige: #EFE0D5;
+  --brown: #905E48;
+  --accent: #80B56D;
+  --shadow: 0px 2px 8px 2px rgba(60, 53, 48, 0.06);
+}
+
+* {
+  font-family:  'Sora', sans-serif;
+}
+
+.body-wrapper {
+  margin: auto;
+  width: 50vh;
+  height: 100vh;
+  background-color: var(--beige);
+  position: relative;
+}
+
+.page-wrapper {
+  padding: 24px;
+  color: var(--dark);
+}
+
+p {
+  font-family:  'Inter', sans-serif;
+}
+
+.logo {
+  margin: auto;
+  width: max-content;
+  padding-bottom: 16px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: calc(50vh - 48px);
+  padding: 24px;
+  background-color: var(--dark);
+  color: var(--light);
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.level {
+  margin:  100px auto;
+  max-width: fit-content;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.progress-container {
+  margin: auto;
+  background-color: var(--light);
+  width: 250px;
+  height: 250px;
+  padding: 24px;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.progress-bar {
+  background-color: var(--brown);
+  position: absolute;
+  width: 250px;
+  height: 150px;
+  bottom: 24px;
+  border-radius: 2px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+button {
+  margin: auto;
+  background-color: var(--light);
+  border: 0;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px;
+  border-radius: 2px;
+}
+
+.main-btn {
+  background-color: var(--brown);
+  color: var(--light);
+}
+
+button:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.scan-btn-container {
+  position: absolute;
+  bottom: 0;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  height: 124px;
+  border-radius: 20px !important;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light);
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+.card {
+  background-color: var(--light);
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.input-field {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 24px 0;
 }
 
-.App-link {
-  color: #61dafb;
+label {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  background-color: var(--beige);
+  padding: 12px;
+  border: 0;
+  font-family: 'Inter';
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+input:focus {
+  outline-color: var(--dark);
+}
+
+.output-block {
+  padding: 12px;
+  margin-top: 12px;
+  background-color: var(--light);
+}
+
+.output-block:hover {
+  cursor: pointer;
+  opacity: 0.75;
 }

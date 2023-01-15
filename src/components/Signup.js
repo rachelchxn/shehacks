@@ -37,6 +37,8 @@ const Signup = () => {
         await setDoc(doc(db, "users", user.uid), {
             uid: user.uid,
             email: email,
+            level: 0,
+            points: 0,
           });
     }
 
@@ -50,11 +52,11 @@ const Signup = () => {
                     <form onSubmit={createAccount}>
                         <div className='input-field'>
                             <label>Email</label>
-                            <input ref={emailRef} value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <input ref={emailRef} value={email} id='email' onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className='input-field'>
                             <label>Password</label>
-                            <input ref={passwordRef} value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input ref={passwordRef} value={password} id='password' onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <button className='main-btn'>Sign Up</button>
                     </form>

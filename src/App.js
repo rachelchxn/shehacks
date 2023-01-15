@@ -12,6 +12,7 @@ import Login from './components/Login';
 import CreateProfile from './components/CreateProfile';
 import EditProfile from './components/EditProfile';
 import Code from './components/Code';
+import OtherProfile from './components/OtherProfile';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' exact element={<Home/>} />
+          <Route path='/user-profile/:profile' element={<OtherProfile/>} />
           <Route path='/scan' exact element={<Scan/>} />
           <Route path='/code' exact element={<Code/>} />
           <Route path='/prompt' exact element={<Prompt/>} />

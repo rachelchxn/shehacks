@@ -23,13 +23,12 @@ const ConnectionCard = (props) => {
         } else {
             console.log("No such document!");
         }
-        // setIsLoading(false) 
     }
 
     getData(props.uid)
 
   return (
-    <div className='card' onClick={props.onClick}>
+    <div className='card connection' onClick={() => props.onOpen(props.uid)}>
         <h2>{name}</h2>
         <p>{bio}</p>
         <p>{email}</p>

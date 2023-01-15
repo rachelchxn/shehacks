@@ -1,53 +1,3 @@
-// import React, { useState } from 'react'
-// import { Link } from "react-router-dom"
-// import Footer from './Footer'
-// import OutputBlock from './OutputBlock'
-
-// const Prompt = () => {
-    
-//     const [topic, setTopic] = useState('')
-//     let value = ''
-//     const [outputList, setOutputList] = useState(['hello', 'hi', 'yo'])
-
-//     const handleGenerate = () => {
-//         setOutputList([...outputList, topic])
-//         setTopic('')
-//     }
-
-//     const handleDelete = (item) => {
-//         setOutputList(outputList.filter((i) => i !== item ))
-//         console.log(outputList)
-//     }
-
-//   return (
-//     <div  className='body-wrapper'>
-//         <div className='page-wrapper'>
-//             <container className='container'>
-//                 <div className='card'>
-//                     <h3>Prompt Generator</h3>
-//                     <div className='input-field'>
-//                         <label>Topic</label>
-//                         <input onChange={event => setTopic(event.target.value)} value={topic} placeholder='What do you want to talk about?'/>
-//                     </div>
-//                     <button onClick={handleGenerate} className='main-btn'>Generate</button>
-//                 </div>
-//                 <div>
-//                     {outputList && outputList.map((item) => (
-//                         <OutputBlock item={item} key={item.id} 
-//                         onDelete={handleDelete} 
-//                         />
-//                     ))
-//                     }
-//                 </div>
-//             </container>
-//         </div>
-//         <Footer/>
-//     </div>
-//   )
-// }
-
-// export default Prompt
-
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import Footer from './Footer'
@@ -62,28 +12,6 @@ const Prompt = () => {
     const [outputList, setOutputList] = useState('')
 
     const promptGen = async (topic) => {
-    //     let prompt = `Give me questions to ask recruiters during coffee chats
-    // Industry: Workplace  
-    // Startup Idea: A platform that generates slide deck contents automatically based on a given outline  
-    // Startup Name: Deckerize  
-    // --  
-    // Industry: Home Decor  
-    // Startup Idea: An app that calculates the best position of your indoor plants for your apartment  
-    // Startup Name: Planteasy
-    // --  
-    // Industry: Healthcare  
-    // Startup Idea: A hearing aid for the elderly that automatically adjusts its levels and with a battery lasting a whole week  
-    // Startup Name: Hearspan
-    
-    // --  
-    // Industry: Education  
-    // Startup Idea: An online school that lets students mix and match their own curriculum based on their interests and goals  
-    // Startup Name: Prime Age
-    
-    // --  
-    // Industry: Productivity  
-    // Startup Idea`
-
 
         let response = ""
 
@@ -113,7 +41,6 @@ const Prompt = () => {
                 prompt = response.data.prompt
                 response = response.data.generations[0].text
                
-                console.log(response,"is the response")
                 return response
             })
             .catch(function (error) {

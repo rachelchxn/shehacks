@@ -199,3 +199,11 @@ input:focus {
 .profile-header {
   margin-bottom: 48px;
 }
+
+.connection {
+  cursor: pointer;
+}
+
+.connection:hover {
+  opacity: 0.75;
+}

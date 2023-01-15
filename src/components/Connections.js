@@ -36,6 +36,12 @@ async function getData(user) {
     }
 }
 
+    function openProfile(uid) {
+        console.log('uid' + uid)
+
+        navigate(`/user-profile/${uid}`)
+    }
+
   return (
     <div className='body-wrapper'>
     {!isLoading &&
@@ -45,7 +51,7 @@ async function getData(user) {
                 <h3>Connections</h3>
                 <div>
                     {connections && connections.map((item) => (
-                        <ConnectionCard uid={item}/>
+                        <ConnectionCard  onOpen={openProfile} uid={item}/>
                     ))
                     }
                 </div>

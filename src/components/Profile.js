@@ -61,7 +61,9 @@ const Profile = () => {
 
   return (
     <div  className='body-wrapper'>
-        <div className='page-wrapper'>
+      {!isLoading && 
+      <div>
+      <div className='page-wrapper'>
             <container className='container'>
                 <div className='card'>
                   <div className='profile-header'>
@@ -83,6 +85,8 @@ const Profile = () => {
             </container>
         </div>
         <Footer/>
+        </div>
+      }
     </div>
   )
 }

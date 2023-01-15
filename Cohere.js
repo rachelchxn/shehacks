@@ -1,6 +1,6 @@
 // // change name later
 // const cohere = require('cohere-ai');
-// Cohere.init('API' KEY');
+// Cohere.init('znMDclvwb5fP1W3EXCNOEze4');
 
 
 
@@ -34,22 +34,20 @@
 //     max_tokens: 40,
 //     temperature: 0.6,
 //     stop_sequences: ["--"]
-// });
+// });\
 
 
 // const startup_idea = 'Prediction: $response.generations[0].text;
 // export console.log(startup_idea);
 
 import axios from 'axios';
-
-
+import React, { useState } from 'react';
 
 function PromptGenerator() {
-
+    console.log("prompt generator 47")
 
     function promptGen() {
         let prompt = `Give me questions to ask recruiters during coffee chats
-
     Industry: Workplace  
     Startup Idea: A platform that generates slide deck contents automatically based on a given outline  
     Startup Name: Deckerize  
@@ -80,7 +78,7 @@ function PromptGenerator() {
                 accept: 'application/json',
                 'Cohere-Version': '2022-12-06',
                 'content-type': 'application/json',
-                authorization: ''
+                authorization: 'Bearer 38Gar8JHT8XDYH6F4TjqmIe5OdCrefiwfoPiz01T'
             },
             data: {
                 max_tokens: 20,
@@ -108,13 +106,15 @@ function PromptGenerator() {
     }
 
     async function fetchPrompts() {
+        console.log("this is here")
         const cohere = require('cohere-ai');
         cohere.init('Lem8TSI2jnOqwR8AOwgQKhSi7zgxfWWL74AP7C8p');
+        
         const response = await cohere.generate({
             model: 'xlarge',
             prompt: '1\nIndustry: Finance\nQuestion: What are some of the major issues within the finance industry?\n--\n2\nIndustry: Technology\nQuestion: What were your favourite projects in your past roles?\n–\n3\nIndustry: Healthcare\nQuestion: What motivated you to pursue a career in healthcare? \n–\n4\nIndustry: Finance\nQuestion: What are some tips for people wanting to pursue this career?\n–\n5\nIndustry: Healthcare\nQuestion: What is the hardest part about working in healthcare?',
             max_tokens: 100,
-            temperature: 0.8,
+            temperature: 0.5,
             k: 0,
             p: 1,
             frequency_penalty: 0,
@@ -130,20 +130,15 @@ function PromptGenerator() {
     fetchPrompts().then((response) => { setPrompts(response); })
 
     return (
-
-        <div className="App">
-            <p>HELLO WHY R U NOT WORKING</p>
-            <button onClick={promptGen}>click me</button>
-            <p id="prompt">Prompt default</p>
-            <p id="response">Response default</p>
-        </div>
+''
+        // <div >
+        //     <p>HELLO WHY R U NOT WORKING</p>
+        //     <button onClick={promptGen}>click me</button>
+        //     <p id="prompt">Prompt default</p>
+        //     <p id="response">Response default</p>
+        // </div>
 
     );
 }
 
 export default PromptGenerator;
-
-
-
-
-

@@ -2,7 +2,7 @@
   "name": "shehacks",
   "version": "0.1.0",
   "homepage": "https://rachelchxn.github.io/shehacks",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@react-navigation/native": "^6.1.2",
     "@testing-library/jest-dom": "^5.16.5",
@@ -50,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }

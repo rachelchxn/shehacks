@@ -61,11 +61,11 @@ const Prompt = () => {
             },
             data: {
                 model: 'command-xlarge-20221108',
-                max_tokens: 30,
+                max_tokens: 20,
                 return_likelihoods: 'NONE',
                 truncate: 'END',
-                prompt: `Generate 1 question for networking with a recruiter based on the given topic as a student who is interested in ${interests}.
-                --
+                prompt: `This program will generate a question for networking with a recruiter based on the given topic as a student who is interested in ${interests}. 
+                Here are some examples:
                 Topic: Interviews.
                 Question: What does a typical interview process look like at this company?
                 --

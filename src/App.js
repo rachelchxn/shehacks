@@ -8,7 +8,9 @@ import Connections from './components/Connections';
 import Profile from './components/Profile';
 import firebase from 'firebase/app';
 import Signup from './components/Signup';
-// import { AuthProvider } from './context/AuthContext';
+import Login from './components/Login';
+import CreateProfile from './components/CreateProfile';
+import EditProfile from './components/EditProfile';
 
 function App() {
 
@@ -22,7 +24,6 @@ function App() {
     <div>
       
       <BrowserRouter>
-      {/* <AuthProvider> */}
         <Routes>
           <Route path='/' exact element={<Home/>} />
           <Route path='/scan' exact element={<Scan/>} />
@@ -30,8 +31,10 @@ function App() {
           <Route path='/connections' exact element={<Connections/> } />
           <Route path='/profile' exact element={<Profile/> } />
           <Route path='/signup' exact element={<Signup/> } />
+          <Route path='/login' exact element={<Login/> } />
+          <Route path='/create-profile' exact element={<CreateProfile/> } />
+          <Route path='/edit-profile' exact element={<EditProfile/> } />
         </Routes>
-        {/* </AuthProvider> */}
       </BrowserRouter>
     </div>
   );

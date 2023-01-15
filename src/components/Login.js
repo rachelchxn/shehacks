@@ -1,11 +1,10 @@
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { db, auth } from '../firebase' 
 // import { useAuth } from '../context/AuthContext';
 
-const Signup = () => {
+const Login = () => {
     // const { signup } = useAuth();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,27 +16,21 @@ const Signup = () => {
 
     const navigate = useNavigate()
 
-    const createAccount = (event) => {
-        event.preventDefault()
-        createUserWithEmailAndPassword(auth, email, password)
+    const loginUser = (e) => {
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            // Signed in
             const user = userCredential.user;
-            console.log(user)
-            addToCloud(user)
-            navigate('/create-profile')
+            navigate("/")
+            console.log(user);
         })
         .catch((error) => {
-            console.log(error)
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
         });
-
-    }
-    
-    async function addToCloud(user) {
-        console.log('working')
-        await setDoc(doc(db, "users", user.uid), {
-            uid: user.uid,
-            email: email,
-          });
+       
     }
 
   return (
@@ -46,8 +39,8 @@ const Signup = () => {
             <div className='container'>
                 <h3 className='logo'>Brewmate</h3>
                 <div className='card center-vertical'>
-                    <h2>Get Started</h2>
-                    <form onSubmit={createAccount}>
+                    <h2>Login</h2>
+                    <form onSubmit={loginUser}>
                         <div className='input-field'>
                             <label>Email</label>
                             <input ref={emailRef} value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -56,14 +49,14 @@ const Signup = () => {
                             <label>Password</label>
                             <input ref={passwordRef} value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <button className='main-btn'>Sign Up</button>
+                        <button className='main-btn'>Login</button>
                     </form>
                 </div>
-                <p className='center-horizontal'>Already have an account? <span><Link className='span-link' to='/login'>Login</Link></span></p>
             </div>
+            <p className='center-horizontal'>Don't have an account? <span><Link className='span-link' to='/signup'>Signup</Link></span></p>
         </div>
     </div>
   )
 }
 
-export default Signup
+export default Login

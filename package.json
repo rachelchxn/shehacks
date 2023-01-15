@@ -21,11 +21,8 @@
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
     "react-web-qr-reader": "^1.0.4",
-<<<<<<< Updated upstream
-=======
     "react-webcam-barcode-scanner": "^0.0.2-rc2",
     "react-webcam-qr-scanner": "^1.0.8",
->>>>>>> Stashed changes
     "web-vitals": "^2.1.4"
   },
   "scripts": {

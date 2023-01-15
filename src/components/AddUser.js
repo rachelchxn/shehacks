@@ -36,7 +36,7 @@ const AddUser = () => {
   }
 
 const handleAdd = async () => {               
-  await updateDoc(doc(db, "users", user.uid), {
+  await updateDoc(doc(db, "users", auth.currentUser.uid), {
     connections: arrayUnion(user),
     points: increment(200)
   });

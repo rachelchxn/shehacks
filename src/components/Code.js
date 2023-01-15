@@ -16,10 +16,6 @@ const Code = () => {
     const [fore, setFore] = useState('#000000');
     const [size, setSize] = useState(256);
 
-    const level = 10
-    const userPoints = 600
-    const totalPoints = 1000
-
     const navigate = useNavigate()
 
     const [name, setName] = useState('')

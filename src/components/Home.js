@@ -49,7 +49,7 @@ const Home = () => {
         <div>
         <div className='page-wrapper'>
             <div className='container'>
-                <h3 className='logo'>Brewmates</h3>
+                <h3 className='logo'>BrewMates</h3>
                 <h2>Welcome back, {name}.</h2>
                 <h3>Your coffee cup is {points/1000*100}% full.</h3>
                 <div className='level'>

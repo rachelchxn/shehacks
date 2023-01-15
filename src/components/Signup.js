@@ -46,7 +46,7 @@ const Signup = () => {
     <div  className='body-wrapper'>
         <div className='page-wrapper'>
             <div className='container'>
-                <h3 className='logo'>Brewmates</h3>
+                <h3 className='logo'>BrewMates</h3>
                 <div className='card center-vertical'>
                     <h2>Get Started</h2>
                     <form onSubmit={createAccount}>

@@ -9,7 +9,6 @@ const ConnectionCard = (props) => {
     const [name, setName] = useState('')
     const [bio, setBio] = useState('')
     const [email, setEmail] = useState('')
-    console.log(props.uid)
 
     async function getData(uid) {
         const docRef = doc(db, "users", uid);

@@ -9,24 +9,24 @@ const Profile = () => {
 
   const navigate = useNavigate()
 
-    const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
-    const [name, setName] = useState('')
-    const [title, setTitle] = useState('')
-    const [bio, setBio] = useState('')
-    const [email, setEmail] = useState('')
-    const [linkedin, setLinkedin] = useState('')
-    const [interests, setInterests] = useState('')
+  const [name, setName] = useState('')
+  const [title, setTitle] = useState('')
+  const [bio, setBio] = useState('')
+  const [email, setEmail] = useState('')
+  const [linkedin, setLinkedin] = useState('')
+  const [interests, setInterests] = useState('')
 
-    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                getData(user)
-            } else {
-                navigate('/signup')
-            }
-          })
-    }, [])
+  useEffect(()=>{
+      onAuthStateChanged(auth, (user) => {
+          if (user) {
+              getData(user)
+          } else {
+              navigate('/signup')
+          }
+        })
+  }, [])
 
     async function getData(user) {
         

@@ -1,15 +1,50 @@
-import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useEffect, useState} from 'react'
+import { Link, useNavigate  } from "react-router-dom"
 import Footer from './Footer'
 import OutputBlock from './OutputBlock'
 import PromptGenerator from '../Cohere'
 import axios from 'axios';
+import { auth, db } from '../firebase';
 const Prompt = () => {
     
     const [topic, setTopic] = useState('')
     const [currentInput, setCurrentInput] = useState('')
     let value = ''
     const [outputList, setOutputList] = useState('')
+
+    const navigate = useNavigate()
+
+    const [title, setTitle] = useState('')
+    const [bio, setBio] = useState('')
+    const [interests, setInterests] = useState('')
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(()=>{
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                getData(user)
+            } else {
+                navigate('/signup')
+            }
+          })
+    }, [])
+
+    async function getData(user) {
+        
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            setTitle(docSnap.data().title)
+            setBio(docSnap.data().bio)
+            setInterests(docSnap.data().interests)
+        } else {
+            console.log("No such document!");
+        }
+        setIsLoading(false)
+    }
 
     const promptGen = async (topic) => {
 
@@ -29,8 +64,17 @@ const Prompt = () => {
                 max_tokens: 20,
                 return_likelihoods: 'NONE',
                 truncate: 'END',
-                prompt: "Give me one coffee chat questions to ask to a recruiter" + topic,
-                //stop_sequences: ["\n"],
+                prompt: `Give me a conversation starter for networking with a recruiter based on the given topic as a student who is interested in ${interests}.
+                
+                Topic: Interviews.
+                Question: What does a typical interview process look like at this company?
+                --
+                Topic: Education.
+                Question: What is the most valuable degree for this profession?
+                --
+                Topic: ${topic}.
+                Question: `,
+                stop_sequences: ["--"],
                 temperature: 1.2, 
             }
         };
@@ -67,6 +111,8 @@ const Prompt = () => {
 
   return (
     <div  className='body-wrapper'>
+        {!isLoading &&
+        <div>
         <div className='page-wrapper'>
             <container className='container'>
                 <div className='card'>
@@ -92,6 +138,8 @@ const Prompt = () => {
             </container>
         </div>
         <Footer/>
+        </div>
+        }
     </div>
   )
 }

@@ -13,6 +13,8 @@ import CreateProfile from './components/CreateProfile';
 import EditProfile from './components/EditProfile';
 import Code from './components/Code';
 import OtherProfile from './components/OtherProfile';
+import AddUser from './components/AddUser';
+import Splash from './components/Splash';
 
 function App() {
 
@@ -28,7 +30,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' exact element={<Home/>} />
+          <Route path='/splash' exact element={<Splash/>} />
           <Route path='/user-profile/:profile' element={<OtherProfile/>} />
+          <Route path='/add-user/:user' element={<AddUser/>} />
           <Route path='/scan' exact element={<Scan/>} />
           <Route path='/code' exact element={<Code/>} />
           <Route path='/prompt' exact element={<Prompt/>} />

@@ -127,7 +127,7 @@ const Prompt = () => {
                     </div>
                     <button onClick={handleGenerate} className='main-btn'>Generate</button>
                 </div>
-                <div>
+                <div className='output-container'>
                     {outputList && outputList.map((item) => (
                         <OutputBlock item={item} key={item} 
                         onDelete={handleDelete} 

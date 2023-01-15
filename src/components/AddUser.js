@@ -6,21 +6,19 @@ import { auth, db } from '../firebase';
 import Footer from './Footer'
 import { useParams } from 'react-router-dom'
 
-const OtherProfile = () => {
+const AddUser = () => {
   const navigate = useNavigate()
 
   const [isLoading, setIsLoading] = useState(true)
-  const {profile} = useParams()
+  const {user} = useParams()
 
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [bio, setBio] = useState('')
-//   const [email, setEmail] = useState('')
-  const [linkedin, setLinkedin] = useState('')
   const [interests, setInterests] = useState('')
 
   useEffect(()=>{
-    getData(profile)
+    getData(user)
   }, [])
 
   async function getData(user) {
@@ -30,24 +28,11 @@ const OtherProfile = () => {
           setName(docSnap.data().name)
           setTitle(docSnap.data().title)
           setBio(docSnap.data().bio)
-        //   setEmail(docSnap.data().email)
-          setLinkedin(docSnap.data().linkedin)
           setInterests(docSnap.data().interests)
       } else {
           console.log("No such document!");
       }
-      console.log(validURL(linkedin))
       setIsLoading(false)
-  }
-
-  function validURL(str) {
-    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-    return !!pattern.test(str);
   }
 
 const handleLogout = () => {               
@@ -64,7 +49,6 @@ const handleClose = () => {
 }
 
 
-
 return (
   <div  className='body-wrapper'>
       <div className='page-wrapper'>
@@ -77,10 +61,9 @@ return (
                 </div>
                 <h4>Interests:</h4>
                 <p>{interests}</p>
-                <h4>Linkedin:</h4>
-                <a className='linkedin-link' href={linkedin} target='_blank'>{linkedin}</a>
                 <div className='button-container'>
-                  <button onClick={handleClose} className='alt-btn'>Back to Connections</button>
+                    <button onClick={handleClose} className='main-btn'>Add Connection</button>
+                  <button onClick={handleClose} className='alt-btn'>Cancel</button>
                 </div>
               </div>
           </container>
@@ -90,4 +73,4 @@ return (
 )
 }
 
-export default OtherProfile
+export default AddUser

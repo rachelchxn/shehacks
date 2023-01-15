@@ -5,7 +5,7 @@ import { Link, useNavigate, redirect } from "react-router-dom"
 import { auth, db } from '../firebase'
 import Footer from './Footer'
 
-const Home = () => {
+const Code = () => {
 
     const level = 10
     const userPoints = 600
@@ -45,20 +45,8 @@ const Home = () => {
         <div>
         <div className='page-wrapper'>
             <div className='container'>
-                <h3 className='logo'>Brewmate</h3>
-                <h2>Welcome back, {name}</h2>
-                <div className='level'>
-                    <div className='progress-container'>
-                        <div className='progress-bar'></div>
-                    </div>
-                    <div>
-                        <h1>Level {level}</h1>
-                        <h3>{userPoints}/{totalPoints} points</h3>
-                    </div>
-                </div>
-                <div className= 'scan-btn-container card'>
-                    <Link to='/code'><button className='main-btn'>Scan to Connect</button></Link>
-                </div>
+                <h3>QR CODE</h3>
+                    <Link to='/scan'><button className='main-btn'>Open Camera to Scan</button></Link>
             </div>
         </div>
         <Footer/>
@@ -68,4 +56,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Code

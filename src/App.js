@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Route, Routes, BrowserRouter, Link, useNavigate} from 'react-router-dom';
 import Home from './components/Home';
-import Scan from './Scan';
+import Scan from './components/Scan';
 import Prompt from './components/Prompt';
 import Connections from './components/Connections';
 import Profile from './components/Profile';
@@ -11,6 +11,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import CreateProfile from './components/CreateProfile';
 import EditProfile from './components/EditProfile';
+import Code from './components/Code';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path='/' exact element={<Home/>} />
           <Route path='/scan' exact element={<Scan/>} />
+          <Route path='/code' exact element={<Code/>} />
           <Route path='/prompt' exact element={<Prompt/>} />
           <Route path='/connections' exact element={<Connections/> } />
           <Route path='/profile' exact element={<Profile/> } />

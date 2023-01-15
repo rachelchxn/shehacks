@@ -4,8 +4,17 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, redirect } from "react-router-dom"
 import { auth, db } from '../firebase'
 import Footer from './Footer'
+import QRCode from 'react-qr-code';
 
 const Code = () => {
+    // RACHEL RIGHT HERE 
+    const [userid,setuserid] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
+
+    const [value, setValue] = useState(auth.currentUser.uid);
+    const [back, setBack] = useState('#FFFFFF');
+    const [fore, setFore] = useState('#000000');
+    const [size, setSize] = useState(256);
 
     const level = 10
     const userPoints = 600
@@ -13,31 +22,7 @@ const Code = () => {
 
     const navigate = useNavigate()
 
-    const [isLoading, setIsLoading] = useState(true)
-
     const [name, setName] = useState('')
-
-    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                getData(user)
-            } else {
-                navigate('/signup')
-            }
-          })
-    }, [])
-
-    async function getData(user) {
-        
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            setName(docSnap.data().name)
-        } else {
-            console.log("No such document!");
-        }
-        setIsLoading(false)
-    }
 
   return (
     <div  className='body-wrapper'>
@@ -46,13 +31,28 @@ const Code = () => {
         <div className='page-wrapper'>
             <div className='container'>
                 <h3>QR CODE</h3>
-                    <Link to='/scan'><button className='main-btn'>Open Camera to Scan</button></Link>
             </div>
         </div>
         <Footer/>
         </div>
         }
+        <div className="Generate">
+            {value && (
+        <center>
+        <QRCode
+            title="GeeksForGeeks"
+            value={value}
+            bgColor={back}
+            fgColor={fore}
+            size={size === '' ? 0 : size}
+        />
+        </center>
+        )}
+
+            <Link to='/scan'><button className='main-btn'>Open Camera to Scan</button></Link>
+        </div>
     </div>
+
   )
 }
 

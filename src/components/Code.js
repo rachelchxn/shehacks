@@ -48,7 +48,6 @@ const Code = () => {
         />
         </center>
         )}
-
             <Link to='/scan'><button className='main-btn'>Open Camera to Scan</button></Link>
         </div>
     </div>

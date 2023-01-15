@@ -1,5 +1,5 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { arrayUnion, doc, getDoc, increment, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
@@ -35,13 +35,12 @@ const AddUser = () => {
       setIsLoading(false)
   }
 
-const handleLogout = () => {               
-  signOut(auth).then(() => {
-      navigate("/");
-      console.log("Signed out successfully")
-  }).catch((error) => {
-    console.log(error)
+const handleAdd = async () => {               
+  await updateDoc(doc(db, "users", user.uid), {
+    connections: arrayUnion(user),
+    points: increment(200)
   });
+  navigate('/connections')
 }
 
 const handleClose = () => {
@@ -62,7 +61,7 @@ return (
                 <h4>Interests:</h4>
                 <p>{interests}</p>
                 <div className='button-container'>
-                    <button onClick={handleClose} className='main-btn'>Add Connection</button>
+                    <button onClick={handleAdd} className='main-btn'>Add Connection</button>
                   <button onClick={handleClose} className='alt-btn'>Cancel</button>
                 </div>
               </div>
@@ -72,5 +71,4 @@ return (
   </div>
 )
 }
-
 export default AddUser

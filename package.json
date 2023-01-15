@@ -1,6 +1,7 @@
 {
   "name": "shehacks",
   "version": "0.1.0",
+  "homepage": "https://rachelchxn.github.io/shehacks",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -16,9 +17,12 @@
     "react-qr-code": "^2.0.11",
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
+    "react-web-qr-reader": "^1.0.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -253,3 +253,15 @@ h1 {
 .connection:hover {
   opacity: 0.75;
 }
+
+.Generate {
+  margin: 64px auto;
+}
+
+.cam-btn {
+  margin-top: 10vh;
+}
+
+.centered {
+  margin: auto;
+}

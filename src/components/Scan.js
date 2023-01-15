@@ -42,22 +42,24 @@ class Test extends Component {
     }
     
     return(
-      <div>
-      <div>
-        <p>The result is: {this.state.result}</p>
-        <QrReader
+      <div className='body-wrapper'>
+      <div className='page-wrapper'>
+      <div className='container'>
+        <h3 className='center-horizontal'>Scan Another's QR Code</h3>
+        <QrReader className='centered'
           delay={this.state.delay}
           style={previewStyle}
           onError={this.handleError}
           onScan={this.handleScan}
         />
-      </div>
-      <div>
-        {this.state.result !== 'No result' &&
+        {this.state.result == 'No result' &&
       <a href={`${this.state.link}${this.state.result}`}>
-        <button>Click Me</button>
+        <button className='main=btn'>Click Me</button>
       </a>
   }
+      </div>
+      </div>
+      <div>
       </div>
       </div>
       )

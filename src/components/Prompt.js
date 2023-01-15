@@ -61,11 +61,11 @@ const Prompt = () => {
             },
             data: {
                 model: 'command-xlarge-20221108',
-                max_tokens: 20,
+                max_tokens: 30,
                 return_likelihoods: 'NONE',
                 truncate: 'END',
-                prompt: `Give me a conversation starter for networking with a recruiter based on the given topic as a student who is interested in ${interests}.
-                
+                prompt: `Generate 1 question for networking with a recruiter based on the given topic as a student who is interested in ${interests}.
+                --
                 Topic: Interviews.
                 Question: What does a typical interview process look like at this company?
                 --
@@ -73,7 +73,8 @@ const Prompt = () => {
                 Question: What is the most valuable degree for this profession?
                 --
                 Topic: ${topic}.
-                Question: `,
+                Question: 
+                --`,
                 stop_sequences: ["--"],
                 temperature: 1.2, 
             }

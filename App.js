@@ -21,7 +21,8 @@ function App() {
   return (
     <div>
 
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
+        {/* <AuthProvider> */}
         <Routes>
           <Route path='/' exact element={<Home />} />
           <Route path='/scan' exact element={<Scan />} />
@@ -30,6 +31,7 @@ function App() {
           <Route path='/profile' exact element={<Profile />} />
           <Route path='/signup' exact element={<Signup />} />
         </Routes>
+        {/* </AuthProvider> */}
       </BrowserRouter>
     </div>
   );

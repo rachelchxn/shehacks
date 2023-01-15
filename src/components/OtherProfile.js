@@ -1,5 +1,5 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc,collection, getDoc, setDoc, getDocs } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
@@ -15,16 +15,12 @@ const OtherProfile = () => {
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [bio, setBio] = useState('')
+//   const [email, setEmail] = useState('')
   const [linkedin, setLinkedin] = useState('')
   const [interests, setInterests] = useState('')
 
-  const [notes, setNotes] = useState('')
-
-
   useEffect(()=>{
     getData(profile)
-    getNotesData(auth.currentUser.uid)
-    setIsLoading(false)
   }, [])
 
   async function getData(user) {
@@ -34,24 +30,15 @@ const OtherProfile = () => {
           setName(docSnap.data().name)
           setTitle(docSnap.data().title)
           setBio(docSnap.data().bio)
+        //   setEmail(docSnap.data().email)
           setLinkedin(docSnap.data().linkedin)
           setInterests(docSnap.data().interests)
       } else {
           console.log("No such document!");
       }
-    }
-  async function getNotesData(user) {
-
-      const docRefSelf = doc(db, "users", auth.currentUser.uid, 'connections');
-      const docSnapSelf = await getDoc(docRefSelf);
-      if (docSnapSelf.exists()) {
-          setNotes(docSnapSelf.data().notes)
-      } else {
-          console.log("No such document!");
-      }
-      
-    }
-    //   console.log(validURL(linkedin))
+      console.log(validURL(linkedin))
+      setIsLoading(false)
+  }
 
   function validURL(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
@@ -63,35 +50,20 @@ const OtherProfile = () => {
     return !!pattern.test(str);
   }
 
+const handleLogout = () => {               
+  signOut(auth).then(() => {
+      navigate("/");
+      console.log("Signed out successfully")
+  }).catch((error) => {
+    console.log(error)
+  });
+}
 
 const handleClose = () => {
   navigate('/connections')
 }
 
-const [editNotes, setEditNotes] = useState(false)
 
-const handleEdit = async () => {
-  setEditNotes(true)
-  await setDoc((db, "users", auth.currentUser.uid), {
-    'connections.hCT18dQ1L5PXe8mPq0nf7vLbhSh2': 'hello there'
-  },
-  {merge: true});
-navigate('/profile')
-}
-
-const updateNotes = async(event) => {
-    event.preventDefault()
-    console.log('working')
-    await setDoc((db, "users", auth.currentUser.uid, 'connections', profile), {
-        value: 'hello there'
-      },
-      {merge: true});
-    navigate('/profile')
-}
-
-const cancelChanges = () => {
-    navigate('/profile')
-}
 
 return (
   <div  className='body-wrapper'>
@@ -107,12 +79,7 @@ return (
                 <p>{interests}</p>
                 <h4>Linkedin:</h4>
                 <a className='linkedin-link' href={linkedin} target='_blank'>{linkedin}</a>
-                {/* <h4>Chat Notes:</h4>
-                <div className='chat-notes'>
-                    <p>{notes}</p>
-                </div> */}
                 <div className='button-container'>
-                    {/* <button onClick={handleEdit} className='main-btn'>Edit Chat Notes</button> */}
                   <button onClick={handleClose} className='alt-btn'>Back to Connections</button>
                 </div>
               </div>
